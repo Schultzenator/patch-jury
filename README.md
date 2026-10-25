@@ -8,7 +8,7 @@ Patch Jury helps a maintainer see whether a fix addresses a regression or only i
 
 Public repository: https://github.com/Schultzenator/patch-jury
 
-Preview release: https://github.com/Schultzenator/patch-jury/releases/tag/v0.1.0-preview
+Preview release: https://github.com/Schultzenator/patch-jury/releases/tag/v0.1.1-preview
 
 ## Run the test build
 

@@ -1,24 +1,32 @@
 """One bounded Token Factory call; conservative durable budget reservations."""
 import json, os, pathlib, sqlite3, urllib.request
+from contextlib import contextmanager, closing
 from .fixtures import FIXTURES, validate_cases
 MODEL='nvidia/Nemotron-3_5-Lightning'
 ENDPOINT='https://api.tokenfactory.nebius.com/v1/chat/completions'
 
+@contextmanager
+def connection(path):
+    # SQLite's transaction context does not close its connection.
+    with closing(sqlite3.connect(path,timeout=20)) as db:
+        with db:
+            yield db
+
 class Budget:
     def __init__(self, path='.state/budget.sqlite3'):
         self.path=pathlib.Path(path); self.path.parent.mkdir(parents=True,exist_ok=True)
-        with sqlite3.connect(self.path) as db:
+        with connection(self.path) as db:
             db.execute('CREATE TABLE IF NOT EXISTS calls(id INTEGER PRIMARY KEY, reserved_cents INTEGER NOT NULL, usage TEXT)')
     def reserve(self):
-        with sqlite3.connect(self.path,timeout=20) as db:
+        with connection(self.path) as db:
             db.execute('BEGIN IMMEDIATE')
             used=db.execute('SELECT coalesce(sum(reserved_cents),0) FROM calls').fetchone()[0]
             if used>=1000: raise ValueError('Hard $10 budget reached')
             return db.execute('INSERT INTO calls(reserved_cents) VALUES(1)').lastrowid
     def record(self, id, usage):
-        with sqlite3.connect(self.path) as db: db.execute('UPDATE calls SET usage=? WHERE id=?',(json.dumps(usage),id))
+        with connection(self.path) as db: db.execute('UPDATE calls SET usage=? WHERE id=?',(json.dumps(usage),id))
     def status(self):
-        with sqlite3.connect(self.path) as db:
+        with connection(self.path) as db:
             n,c=db.execute('SELECT count(*),coalesce(sum(reserved_cents),0) FROM calls').fetchone()
         return {'attempts':n,'reserved_usd':c/100,'cap_usd':10,'note':'Reservations include failures; not a provider invoice. Preserve this ledger across restarts.'}
 

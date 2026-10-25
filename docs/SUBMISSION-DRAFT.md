@@ -41,7 +41,7 @@ The public catalog's machine-readable model IDs, context limits, regional inform
 ## Submission fields still required
 
 - Public repository URL: https://github.com/Schultzenator/patch-jury
-- Working demo/test build URL: https://github.com/Schultzenator/patch-jury/releases/tag/v0.1.0-preview (installable local test build; not a hosted service).
+- Working demo/test build URL: https://github.com/Schultzenator/patch-jury/releases/tag/v0.1.1-preview (installable local test build; not a hosted service).
 - Public YouTube video URL: pending; preview MP4 is not a substitute.
 - Live evidence: request ID, returned model, usage and authentic live demo.
 - Eligibility, terms, tools feedback and final confirmation: review actual Devpost fields.
