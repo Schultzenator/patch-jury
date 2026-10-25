@@ -1,0 +1,11 @@
+Two patches can both pass the obvious regression test. Which one deserves a merge? Patch Jury turns that question into evidence. This preview shows real local executions with hand authored inputs. It does not show a live model call.
+
+First, pagination. The original function drops the final partial page. Patch A adds one page every time. Patch B uses ceiling division. Both fixes pass the smoke test, but exact multiples and empty input expose Patch A. The complete report retains expected and actual results for every version.
+
+Second, money. Multiplying a floating point value and truncating loses cents. Replacing truncation with round passes our smoke case, but decimal half up ties still fail. The reference fix uses decimal arithmetic. Nine concrete cases make the distinction inspectable.
+
+Third, half open intervals. A symptom fix recognizes containment but counts touching endpoints as overlap. The strict boundary check passes all nine cases. These are small educational fixtures. Passing them does not prove correctness on arbitrary programs.
+
+The live integration asks NVIDIA Nemotron on Nebius Token Factory to propose boundary inputs. It never executes model written Python. A trusted oracle supplies expectations, and separate containers execute all three versions without network access or credentials. Live inference is implemented but still awaits account access and free credits. A durable budget ledger caps reservations at ten dollars.
+
+The maintainer gets source hashes, exact counterexamples, timing, provenance, and an exportable report. The model proposes challenges. Executable evidence informs the human decision.

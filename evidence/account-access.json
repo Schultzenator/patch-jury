@@ -1,0 +1,23 @@
+{
+  "checked": "2026-10-25",
+  "owner_mailbox_exists": true,
+  "evidence": "Successful authenticated IMAP login using existing OpenBao secret; no message sent.",
+  "openbao_available": true,
+  "devpost_credentials_present": false,
+  "nebius_credentials_present": false,
+  "devpost_registered": false,
+  "hackathon_joined": false,
+  "submission_status": "not submitted",
+  "browser_inventory": {
+    "apps": 0,
+    "browsers": 0
+  },
+  "browser_creation_errors": [
+    "Browser is not available: chrome",
+    "Browser is not available: iab"
+  ],
+  "registration_form_http_status": 403,
+  "inference_calls": 0,
+  "inference_spend_usd": 0,
+  "free_credits_confirmed": false
+}

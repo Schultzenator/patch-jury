@@ -1,0 +1,301 @@
+{
+  "fixture": "money",
+  "title": "A cent is not a rounding error",
+  "provenance": {
+    "mode": "authored-example",
+    "model": null,
+    "note": "Hand-authored cases, not an API recording or live inference."
+  },
+  "image": "python@sha256:b658b05ce9c4eb97ec6fc19424818a1f31993659c2b505a532f470e83807815d",
+  "variants": {
+    "base": {
+      "source": "def cents(amount):\n    return int(float(amount) * 100)\n",
+      "sha256": "b4b89935556f51554cf1094899a3337360c365dac713cf0d689cb15d955c1c01",
+      "seconds": 0.478,
+      "tests": [
+        {
+          "group": "smoke",
+          "args": [
+            "1.999"
+          ],
+          "expected": 200,
+          "actual": 199,
+          "passed": false
+        },
+        {
+          "group": "challenge",
+          "args": [
+            "1.005"
+          ],
+          "expected": 101,
+          "actual": 100,
+          "passed": false
+        },
+        {
+          "group": "challenge",
+          "args": [
+            "0.145"
+          ],
+          "expected": 15,
+          "actual": 14,
+          "passed": false
+        },
+        {
+          "group": "challenge",
+          "args": [
+            "2.675"
+          ],
+          "expected": 268,
+          "actual": 267,
+          "passed": false
+        },
+        {
+          "group": "held_out",
+          "args": [
+            "0.005"
+          ],
+          "expected": 1,
+          "actual": 0,
+          "passed": false
+        },
+        {
+          "group": "held_out",
+          "args": [
+            "10.125"
+          ],
+          "expected": 1013,
+          "actual": 1012,
+          "passed": false
+        },
+        {
+          "group": "held_out",
+          "args": [
+            "1.015"
+          ],
+          "expected": 102,
+          "actual": 101,
+          "passed": false
+        },
+        {
+          "group": "held_out",
+          "args": [
+            "999.995"
+          ],
+          "expected": 100000,
+          "actual": 99999,
+          "passed": false
+        },
+        {
+          "group": "held_out",
+          "args": [
+            "0.004"
+          ],
+          "expected": 0,
+          "actual": 0,
+          "passed": true
+        }
+      ],
+      "passed": 1,
+      "total": 9
+    },
+    "patch_a": {
+      "source": "def cents(amount):\n    return round(float(amount) * 100)\n",
+      "sha256": "83c022c586740a9601fba013de18fbdd61f33ead48bf16adfbc64ea543215566",
+      "seconds": 0.439,
+      "tests": [
+        {
+          "group": "smoke",
+          "args": [
+            "1.999"
+          ],
+          "expected": 200,
+          "actual": 200,
+          "passed": true
+        },
+        {
+          "group": "challenge",
+          "args": [
+            "1.005"
+          ],
+          "expected": 101,
+          "actual": 100,
+          "passed": false
+        },
+        {
+          "group": "challenge",
+          "args": [
+            "0.145"
+          ],
+          "expected": 15,
+          "actual": 14,
+          "passed": false
+        },
+        {
+          "group": "challenge",
+          "args": [
+            "2.675"
+          ],
+          "expected": 268,
+          "actual": 268,
+          "passed": true
+        },
+        {
+          "group": "held_out",
+          "args": [
+            "0.005"
+          ],
+          "expected": 1,
+          "actual": 0,
+          "passed": false
+        },
+        {
+          "group": "held_out",
+          "args": [
+            "10.125"
+          ],
+          "expected": 1013,
+          "actual": 1012,
+          "passed": false
+        },
+        {
+          "group": "held_out",
+          "args": [
+            "1.015"
+          ],
+          "expected": 102,
+          "actual": 101,
+          "passed": false
+        },
+        {
+          "group": "held_out",
+          "args": [
+            "999.995"
+          ],
+          "expected": 100000,
+          "actual": 100000,
+          "passed": true
+        },
+        {
+          "group": "held_out",
+          "args": [
+            "0.004"
+          ],
+          "expected": 0,
+          "actual": 0,
+          "passed": true
+        }
+      ],
+      "passed": 4,
+      "total": 9
+    },
+    "patch_b": {
+      "source": "from decimal import Decimal, ROUND_HALF_UP\ndef cents(amount):\n    return int((Decimal(amount) * 100).quantize(Decimal(\"1\"), rounding=ROUND_HALF_UP))\n",
+      "sha256": "6f817adf98abb6a3f74402e313a1199483813ed586ecbb30e8b4caa6e03b9553",
+      "seconds": 0.434,
+      "tests": [
+        {
+          "group": "smoke",
+          "args": [
+            "1.999"
+          ],
+          "expected": 200,
+          "actual": 200,
+          "passed": true
+        },
+        {
+          "group": "challenge",
+          "args": [
+            "1.005"
+          ],
+          "expected": 101,
+          "actual": 101,
+          "passed": true
+        },
+        {
+          "group": "challenge",
+          "args": [
+            "0.145"
+          ],
+          "expected": 15,
+          "actual": 15,
+          "passed": true
+        },
+        {
+          "group": "challenge",
+          "args": [
+            "2.675"
+          ],
+          "expected": 268,
+          "actual": 268,
+          "passed": true
+        },
+        {
+          "group": "held_out",
+          "args": [
+            "0.005"
+          ],
+          "expected": 1,
+          "actual": 1,
+          "passed": true
+        },
+        {
+          "group": "held_out",
+          "args": [
+            "10.125"
+          ],
+          "expected": 1013,
+          "actual": 1013,
+          "passed": true
+        },
+        {
+          "group": "held_out",
+          "args": [
+            "1.015"
+          ],
+          "expected": 102,
+          "actual": 102,
+          "passed": true
+        },
+        {
+          "group": "held_out",
+          "args": [
+            "999.995"
+          ],
+          "expected": 100000,
+          "actual": 100000,
+          "passed": true
+        },
+        {
+          "group": "held_out",
+          "args": [
+            "0.004"
+          ],
+          "expected": 0,
+          "actual": 0,
+          "passed": true
+        }
+      ],
+      "passed": 9,
+      "total": 9
+    }
+  },
+  "limitations": [
+    "Bundled fixtures only; no arbitrary repository execution.",
+    "Passing finite cases is not proof of correctness.",
+    "Oracle is handwritten from the fixture specification.",
+    "Held-out cases are excluded from the model prompt but public in this repository."
+  ],
+  "distinguishing_cases": [
+    1,
+    2,
+    4,
+    5,
+    6
+  ],
+  "challenge_distinguishing_cases": [
+    1,
+    2
+  ],
+  "conclusion": "The evidence distinguishes the patches.",
+  "report_sha256": "fc604eb6724966cf1b6a0396d00ed5e7f9be97223b1dafb3234bd4ee7e570930"
+}

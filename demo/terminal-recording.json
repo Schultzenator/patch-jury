@@ -1,0 +1,332 @@
+[
+  {
+    "fixture": "pages",
+    "command": [
+      "/usr/bin/python3",
+      "-m",
+      "patchjury",
+      "--fixture",
+      "pages",
+      "--output",
+      "evidence/pages.json"
+    ],
+    "chunks": [
+      {
+        "seconds": 0.069,
+        "text": "PATCH JURY | The page that disappeared\r\nProvenance: authored-example\r\n"
+      },
+      {
+        "seconds": 1.333,
+        "text": "base      6/9 passed | 0.416s\r\n"
+      },
+      {
+        "seconds": 1.333,
+        "text": "  FAIL smoke     [11, 10] -> 1 (expected 2)\r\n  PASS challenge [0, 10] -> 0 (expected 0)\r\n  PASS challenge [20, 10] -> 2 (expected 2)\r\n  FAIL challenge [21, 10] -> 2 (expected 3)\r\n  PASS held_out  [1, 1] -> 1 (expected 1)\r\n"
+      },
+      {
+        "seconds": 1.333,
+        "text": "  PASS held_out  [99, 3] -> 33 (expected 33)\r\n"
+      },
+      {
+        "seconds": 1.333,
+        "text": "  FAIL held_out  [100, 3] -> 33 (expected 34)\r\n"
+      },
+      {
+        "seconds": 1.333,
+        "text": "  PASS held_out  [0, 1] -> 0 (expected 0)\r\n  PASS held_out  [10000, 100] -> 100 (expected 100)\r\n"
+      },
+      {
+        "seconds": 1.333,
+        "text": "patch_a   3/9 passed | 0.409s\r\n"
+      },
+      {
+        "seconds": 1.333,
+        "text": "  PASS smoke     [11, 10] -> 2 (expected 2)\r\n"
+      },
+      {
+        "seconds": 1.333,
+        "text": "  FAIL challenge [0, 10] -> 1 (expected 0)\r\n  FAIL challenge [20, 10] -> 3 (expected 2)\r\n"
+      },
+      {
+        "seconds": 1.333,
+        "text": "  PASS challenge [21, 10] -> 3 (expected 3)\r\n  FAIL held_out  [1, 1] -> 2 (expected 1)\r\n"
+      },
+      {
+        "seconds": 1.333,
+        "text": "  FAIL held_out  [99, 3] -> 34 (expected 33)\r\n"
+      },
+      {
+        "seconds": 1.333,
+        "text": "  PASS held_out  [100, 3] -> 34 (expected 34)\r\n"
+      },
+      {
+        "seconds": 1.333,
+        "text": "  FAIL held_out  [0, 1] -> 1 (expected 0)\r\n"
+      },
+      {
+        "seconds": 1.333,
+        "text": "  FAIL held_out  [10000, 100] -> 101 (expected 100)\r\n"
+      },
+      {
+        "seconds": 1.333,
+        "text": "patch_b   9/9 passed | 0.436s\r\n"
+      },
+      {
+        "seconds": 1.333,
+        "text": "  PASS smoke     [11, 10] -> 2 (expected 2)\r\n"
+      },
+      {
+        "seconds": 1.333,
+        "text": "  PASS challenge [0, 10] -> 0 (expected 0)\r\n"
+      },
+      {
+        "seconds": 1.333,
+        "text": "  PASS challenge [20, 10] -> 2 (expected 2)\r\n"
+      },
+      {
+        "seconds": 1.333,
+        "text": "  PASS challenge [21, 10] -> 3 (expected 3)\r\n"
+      },
+      {
+        "seconds": 1.333,
+        "text": "  PASS held_out  [1, 1] -> 1 (expected 1)\r\n"
+      },
+      {
+        "seconds": 1.333,
+        "text": "  PASS held_out  [99, 3] -> 33 (expected 33)\r\n"
+      },
+      {
+        "seconds": 1.333,
+        "text": "  PASS held_out  [100, 3] -> 34 (expected 34)\r\n  PASS held_out  [0, 1] -> 0 (expected 0)\r\n"
+      },
+      {
+        "seconds": 1.333,
+        "text": "  PASS held_out  [10000, 100] -> 100 (expected 100)\r\n"
+      },
+      {
+        "seconds": 1.333,
+        "text": "The evidence distinguishes the patches.\r\n"
+      },
+      {
+        "seconds": 1.333,
+        "text": "Evidence exported: evidence/pages.json\r\n"
+      }
+    ]
+  },
+  {
+    "fixture": "money",
+    "command": [
+      "/usr/bin/python3",
+      "-m",
+      "patchjury",
+      "--fixture",
+      "money",
+      "--output",
+      "evidence/money.json"
+    ],
+    "chunks": [
+      {
+        "seconds": 0.077,
+        "text": "PATCH JURY | A cent is not a rounding error\r\nProvenance: authored-example\r\n"
+      },
+      {
+        "seconds": 1.431,
+        "text": "base      1/9 passed | 0.478s\r\n"
+      },
+      {
+        "seconds": 1.431,
+        "text": "  FAIL smoke     ['1.999'] -> 199 (expected 200)\r\n  FAIL challenge ['1.005'] -> 100 (expected 101)\r\n  FAIL challenge ['0.145'] -> 14 (expected 15)\r\n  FAIL challenge ['2.675'] -> 267 (expected 268)\r\n"
+      },
+      {
+        "seconds": 1.431,
+        "text": "  FAIL held_out  ['0.005'] -> 0 (expected 1)\r\n"
+      },
+      {
+        "seconds": 1.431,
+        "text": "  FAIL held_out  ['10.125'] -> 1012 (expected 1013)\r\n"
+      },
+      {
+        "seconds": 1.431,
+        "text": "  FAIL held_out  ['1.015'] -> 101 (expected 102)\r\n"
+      },
+      {
+        "seconds": 1.431,
+        "text": "  FAIL held_out  ['999.995'] -> 99999 (expected 100000)\r\n  PASS held_out  ['0.004'] -> 0 (expected 0)\r\n"
+      },
+      {
+        "seconds": 1.431,
+        "text": "patch_a   4/9 passed | 0.439s\r\n"
+      },
+      {
+        "seconds": 1.431,
+        "text": "  PASS smoke     ['1.999'] -> 200 (expected 200)\r\n"
+      },
+      {
+        "seconds": 1.431,
+        "text": "  FAIL challenge ['1.005'] -> 100 (expected 101)\r\n  FAIL challenge ['0.145'] -> 14 (expected 15)\r\n"
+      },
+      {
+        "seconds": 1.431,
+        "text": "  PASS challenge ['2.675'] -> 268 (expected 268)\r\n  FAIL held_out  ['0.005'] -> 0 (expected 1)\r\n"
+      },
+      {
+        "seconds": 1.431,
+        "text": "  FAIL held_out  ['10.125'] -> 1012 (expected 1013)\r\n"
+      },
+      {
+        "seconds": 1.431,
+        "text": "  FAIL held_out  ['1.015'] -> 101 (expected 102)\r\n  PASS held_out  ['999.995'] -> 100000 (expected 100000)\r\n"
+      },
+      {
+        "seconds": 1.431,
+        "text": "  PASS held_out  ['0.004'] -> 0 (expected 0)\r\n"
+      },
+      {
+        "seconds": 1.431,
+        "text": "patch_b   9/9 passed | 0.434s\r\n"
+      },
+      {
+        "seconds": 1.431,
+        "text": "  PASS smoke     ['1.999'] -> 200 (expected 200)\r\n"
+      },
+      {
+        "seconds": 1.431,
+        "text": "  PASS challenge ['1.005'] -> 101 (expected 101)\r\n  PASS challenge ['0.145'] -> 15 (expected 15)\r\n"
+      },
+      {
+        "seconds": 1.431,
+        "text": "  PASS challenge ['2.675'] -> 268 (expected 268)\r\n"
+      },
+      {
+        "seconds": 1.431,
+        "text": "  PASS held_out  ['0.005'] -> 1 (expected 1)\r\n"
+      },
+      {
+        "seconds": 1.431,
+        "text": "  PASS held_out  ['10.125'] -> 1013 (expected 1013)\r\n"
+      },
+      {
+        "seconds": 1.431,
+        "text": "  PASS held_out  ['1.015'] -> 102 (expected 102)\r\n"
+      },
+      {
+        "seconds": 1.431,
+        "text": "  PASS held_out  ['999.995'] -> 100000 (expected 100000)\r\n"
+      },
+      {
+        "seconds": 1.431,
+        "text": "  PASS held_out  ['0.004'] -> 0 (expected 0)\r\nThe evidence distinguishes the patches.\r\n"
+      },
+      {
+        "seconds": 1.431,
+        "text": "Evidence exported: evidence/money.json\r\n"
+      }
+    ]
+  },
+  {
+    "fixture": "intervals",
+    "command": [
+      "/usr/bin/python3",
+      "-m",
+      "patchjury",
+      "--fixture",
+      "intervals",
+      "--output",
+      "evidence/intervals.json"
+    ],
+    "chunks": [
+      {
+        "seconds": 0.07,
+        "text": "PATCH JURY | The meeting at the boundary\r\nProvenance: authored-example\r\n"
+      },
+      {
+        "seconds": 1.448,
+        "text": "base      5/9 passed | 0.474s\r\n"
+      },
+      {
+        "seconds": 1.448,
+        "text": "  FAIL smoke     [[1, 5], [0, 3]] -> False (expected True)\r\n  PASS challenge [[1, 3], [3, 5]] -> False (expected False)\r\n"
+      },
+      {
+        "seconds": 1.448,
+        "text": "  FAIL challenge [[1, 5], [1, 5]] -> False (expected True)\r\n  FAIL challenge [[2, 3], [0, 8]] -> False (expected True)\r\n  PASS held_out  [[-5, 0], [0, 5]] -> False (expected False)\r\n"
+      },
+      {
+        "seconds": 1.448,
+        "text": "  PASS held_out  [[0, 1], [-1, 0]] -> False (expected False)\r\n  FAIL held_out  [[1, 2], [1, 2]] -> False (expected True)\r\n  PASS held_out  [[0, 10], [2, 4]] -> True (expected True)\r\n"
+      },
+      {
+        "seconds": 1.448,
+        "text": "  PASS held_out  [[1, 2], [3, 4]] -> False (expected False)\r\npatch_a   6/9 passed | 0.432s\r\n"
+      },
+      {
+        "seconds": 1.448,
+        "text": "  PASS smoke     [[1, 5], [0, 3]] -> True (expected True)\r\n  FAIL challenge [[1, 3], [3, 5]] -> True (expected False)\r\n"
+      },
+      {
+        "seconds": 1.448,
+        "text": "  PASS challenge [[1, 5], [1, 5]] -> True (expected True)\r\n"
+      },
+      {
+        "seconds": 1.448,
+        "text": "  PASS challenge [[2, 3], [0, 8]] -> True (expected True)\r\n"
+      },
+      {
+        "seconds": 1.448,
+        "text": "  FAIL held_out  [[-5, 0], [0, 5]] -> True (expected False)\r\n"
+      },
+      {
+        "seconds": 1.448,
+        "text": "  FAIL held_out  [[0, 1], [-1, 0]] -> True (expected False)\r\n  PASS held_out  [[1, 2], [1, 2]] -> True (expected True)\r\n"
+      },
+      {
+        "seconds": 1.448,
+        "text": "  PASS held_out  [[0, 10], [2, 4]] -> True (expected True)\r\n"
+      },
+      {
+        "seconds": 1.448,
+        "text": "  PASS held_out  [[1, 2], [3, 4]] -> False (expected False)\r\n"
+      },
+      {
+        "seconds": 1.448,
+        "text": "patch_b   9/9 passed | 0.469s\r\n"
+      },
+      {
+        "seconds": 1.448,
+        "text": "  PASS smoke     [[1, 5], [0, 3]] -> True (expected True)\r\n"
+      },
+      {
+        "seconds": 1.448,
+        "text": "  PASS challenge [[1, 3], [3, 5]] -> False (expected False)\r\n  PASS challenge [[1, 5], [1, 5]] -> True (expected True)"
+      },
+      {
+        "seconds": 1.448,
+        "text": "\r\n"
+      },
+      {
+        "seconds": 1.448,
+        "text": "  PASS challenge [[2, 3], [0, 8]] -> True (expected True)\r\n"
+      },
+      {
+        "seconds": 1.448,
+        "text": "  PASS held_out  [[-5, 0], [0, 5]] -> False (expected False)\r\n  PASS held_out  [[0, 1], [-1, 0]] -> False (expected False)\r\n"
+      },
+      {
+        "seconds": 1.448,
+        "text": "  PASS held_out  [[1, 2], [1, 2]] -> True (expected True)\r\n"
+      },
+      {
+        "seconds": 1.448,
+        "text": "  PASS held_out  [[0, 10], [2, 4]] -> True (expected True)\r\n"
+      },
+      {
+        "seconds": 1.448,
+        "text": "  PASS held_out  [[1, 2], [3, 4]] -> False (expected False)\r\nThe evidence distinguishes the patches.\r\n"
+      },
+      {
+        "seconds": 1.449,
+        "text": "Evidence exported: evidence/intervals.json\r\n"
+      }
+    ]
+  }
+]

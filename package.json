@@ -1,0 +1,1 @@
+{"name":"patch-jury","private":true,"version":"0.1.1","scripts":{"build":"tsc"},"devDependencies":{"typescript":"5.9.3"}}

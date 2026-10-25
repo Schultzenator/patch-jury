@@ -1,0 +1,44 @@
+const el = (id) => document.getElementById(id);
+const fixture = el('fixture'), mode = el('mode'), run = el('run');
+let fixtures, report;
+function node(tag, text, cls = '') { const n = document.createElement(tag); n.textContent = text; n.className = cls; return n; }
+async function init() { const res = await fetch('/api/fixtures'); if (!res.ok)
+    throw Error('Cannot load fixtures'); fixtures = await res.json(); for (const [key, value] of Object.entries(fixtures)) {
+    const o = document.createElement('option');
+    o.value = key;
+    o.textContent = value.title;
+    fixture.append(o);
+} fixture.onchange = () => { el('spec').textContent = fixtures[fixture.value].spec; el('results').hidden = true; }; fixture.onchange(new Event('change')); }
+run.onclick = async () => { run.disabled = true; el('results').hidden = true; el('status').textContent = mode.value === 'live' ? 'Requesting boundary inputs from Nemotron on Nebius, then executing tests…' : 'Executing hand-authored cases in isolated containers…'; try {
+    const res = await fetch('/api/compare', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ fixture: fixture.value, mode: mode.value }) });
+    const data = await res.json();
+    if (!res.ok)
+        throw Error(data.error);
+    report = data;
+    render();
+    el('status').textContent = 'Comparison complete. Inspect the failing cases before deciding.';
+}
+catch (e) {
+    el('status').textContent = e instanceof Error ? e.message : 'Run failed';
+}
+finally {
+    run.disabled = false;
+} };
+function render() { el('results').hidden = false; el('conclusion').textContent = report.conclusion; el('provenance').textContent = report.provenance.mode === 'live' ? `LIVE · ${report.provenance.model} · Nebius Token Factory · ${JSON.stringify(report.provenance.usage)}` : 'OFFLINE · Hand-authored examples · No API call or model recording'; el('cards').replaceChildren(); for (const [name, v] of Object.entries(report.variants)) {
+    const c = node('article', '', 'card');
+    c.append(node('h3', name.replace('_', ' ').toUpperCase()), node('div', `${v.passed}/${v.total}`, 'score'), node('p', `cases passed · ${v.seconds}s`), node('p', ['smoke', 'challenge', 'held_out'].map(g => `${g}: ${v.tests.filter(t => t.group === g && t.passed).length}/${v.tests.filter(t => t.group === g).length}`).join(' · ')), node('pre', v.source), node('small', `SHA256 ${v.sha256.slice(0, 16)}…`));
+    el('cards').append(c);
+} el('cases').replaceChildren(); for (const i of report.distinguishing_cases) {
+    const row = node('div', '', 'case');
+    const t = report.variants.base.tests[i];
+    row.append(node('p', `${t.group} · inputs ${JSON.stringify(t.args)} · expected ${JSON.stringify(t.expected)}`));
+    for (const [name, v] of Object.entries(report.variants)) {
+        const t = v.tests[i];
+        row.append(node('span', `${name}: ${t.passed ? 'PASS' : 'FAIL'} → ${JSON.stringify(t.actual ?? t.error)}`, t.passed ? 'pass' : 'fail'));
+    }
+    el('cases').append(row);
+} if (!report.distinguishing_cases.length)
+    el('cases').textContent = 'No distinguishing cases. More evidence is needed.'; el('limitations').replaceChildren(...report.limitations.map(x => node('li', x))); }
+el('export').onclick = () => { const url = URL.createObjectURL(new Blob([JSON.stringify(report, null, 2)], { type: 'application/json' })); const a = document.createElement('a'); a.href = url; a.download = 'patchjury-evidence.json'; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000); };
+init().catch(e => el('status').textContent = e.message);
+export {};
