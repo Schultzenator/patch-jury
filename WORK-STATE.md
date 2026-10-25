@@ -76,3 +76,12 @@ Chroniony .git jest read-only. Osobne lokalne metadane checkpoint.git w tym work
 - Trzy hashe report_sha256 zweryfikowane przez ponowne obliczenie. UI skompilowano i sprawdzono HTTP; brak dostępnej przeglądarki uniemożliwił wizualny test interakcji aplikacji.
 - **Rejestracja Devpost i submission nadal NIE wykonane.** Repo/release nie są Submitted. Brak runtime call NVIDIA/Nebius oznacza niespełniony obecnie obowiązkowy wymóg konkursu. Brak public YouTube i finalnego screen-capture.
 - Koszt inferencji nadal **$0**, brak płatnych kart i planów. Żadne zadanie automatycznego przyszłego submitu nie zostało zaplanowane.
+
+## Ponowne sprawdzenie dostępu — 25.10, 08:56 Warszawa
+
+- Wznowiono istniejący checkpoint, bez powielania ukończonego MVP. Logowanie IMAP ponownie potwierdziło istnienie p.szutt@neisse.ai. Nie użyto Gmail i nie wysłano wiadomości.
+- OpenBao ponownie odczytany: brak credentials `devpost`, `nebius`, `youtube`. Nie utworzono pustych lub fikcyjnych wpisów. Dowód bez sekretów: `evidence/access-recheck.json`.
+- CUA: inventory apps=0, browsers=0. Rzeczywiste próby utworzenia zakładki zarówno chrome, jak i iab zwróciły `Browser is not available`. Bezpośredni request do formularza rejestracji nadal HTTP 403. Publiczny odczyt strony przez web zwraca treść informacyjną; nie daje interaktywnej sesji do założenia konta.
+- GitHub ponownie potwierdził publiczne repo z MIT, main `8641d85705eacf4efa0e5a0e47ff3395d036f3de`, prerelease v0.1.1-preview i dwa assets uploaded. Kod nie został zmieniony; nie powtarzano wcześniej zaliczonych testów.
+- Aktualna blokada operacyjna: brak dostępnej przeglądarki do rejestracji i kont usług. Potrzebne jest udostępnienie sesji przeglądarki w narzędziu CUA; owner nie musi implementować kodu. Formularz eligibility i ewentualne żądanie dokumentu pozostają niezaobserwowane.
+- Stan końcowy tego wznowienia: **NOT SUBMITTED**, inferencja 0 wywołań / $0, darmowe kredyty niepotwierdzone. Film preview jest offline, bez twarzy. Nie zaplanowano przyszłego automatycznego submitu.

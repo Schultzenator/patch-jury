@@ -1,0 +1,17 @@
+{
+  "checked_at": "2026-10-25T07:56:32.336342+00:00",
+  "devpost_credentials_present": false,
+  "nebius_credentials_present": false,
+  "youtube_credentials_present": false,
+  "owner_mailbox_exists": true,
+  "registration_form_http_status": 403,
+  "browser_inventory": {
+    "apps": 0,
+    "browsers": 0
+  },
+  "browser_creation_errors": [
+    "Browser is not available: chrome",
+    "Browser is not available: iab"
+  ],
+  "submission_status": "not submitted"
+}

@@ -1,6 +1,7 @@
 checkpoint.git/
 *.bundle
 session-*.log
+review-*.log
 .env
 .env.*
 !.env.example
