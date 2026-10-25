@@ -1,0 +1,11 @@
+checkpoint.git/
+*.bundle
+session-*.log
+.env
+.env.*
+!.env.example
+__pycache__/
+.state/
+node_modules/
+demo/*.wav
+demo/frames/

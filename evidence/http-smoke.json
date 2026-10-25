@@ -1,0 +1,43 @@
+{
+  "/": {
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "bytes": 1653
+  },
+  "/app.js": {
+    "status": 200,
+    "content_type": "text/javascript",
+    "bytes": 3610
+  },
+  "/style.css": {
+    "status": 200,
+    "content_type": "text/css",
+    "bytes": 2392
+  },
+  "/api/fixtures": {
+    "status": 200,
+    "content_type": "application/json",
+    "bytes": 672
+  },
+  "compare": {
+    "status": 200,
+    "provenance": {
+      "mode": "authored-example",
+      "model": null,
+      "note": "Hand-authored, not recorded model output."
+    },
+    "passed": {
+      "base": 6,
+      "patch_a": 3,
+      "patch_b": 9
+    },
+    "challenge_distinguishing_cases": [
+      1,
+      2
+    ]
+  },
+  "live_without_credits": {
+    "status": 400,
+    "error": "Free credits must be confirmed before live calls"
+  }
+}

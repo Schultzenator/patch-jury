@@ -1,0 +1,487 @@
+{
+  "fixture": "intervals",
+  "title": "The meeting at the boundary",
+  "provenance": {
+    "mode": "authored-example",
+    "model": null,
+    "note": "Hand-authored cases, not an API recording or live inference."
+  },
+  "image": "python@sha256:b658b05ce9c4eb97ec6fc19424818a1f31993659c2b505a532f470e83807815d",
+  "variants": {
+    "base": {
+      "source": "def overlap(a, b):\n    return a[0] < b[0] < a[1]\n",
+      "sha256": "b0926868ede97b82ca245aaec788fe653e13bcd0b8340eea18a1841f832d76e0",
+      "seconds": 0.474,
+      "tests": [
+        {
+          "group": "smoke",
+          "args": [
+            [
+              1,
+              5
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "expected": true,
+          "actual": false,
+          "passed": false
+        },
+        {
+          "group": "challenge",
+          "args": [
+            [
+              1,
+              3
+            ],
+            [
+              3,
+              5
+            ]
+          ],
+          "expected": false,
+          "actual": false,
+          "passed": true
+        },
+        {
+          "group": "challenge",
+          "args": [
+            [
+              1,
+              5
+            ],
+            [
+              1,
+              5
+            ]
+          ],
+          "expected": true,
+          "actual": false,
+          "passed": false
+        },
+        {
+          "group": "challenge",
+          "args": [
+            [
+              2,
+              3
+            ],
+            [
+              0,
+              8
+            ]
+          ],
+          "expected": true,
+          "actual": false,
+          "passed": false
+        },
+        {
+          "group": "held_out",
+          "args": [
+            [
+              -5,
+              0
+            ],
+            [
+              0,
+              5
+            ]
+          ],
+          "expected": false,
+          "actual": false,
+          "passed": true
+        },
+        {
+          "group": "held_out",
+          "args": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "expected": false,
+          "actual": false,
+          "passed": true
+        },
+        {
+          "group": "held_out",
+          "args": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "expected": true,
+          "actual": false,
+          "passed": false
+        },
+        {
+          "group": "held_out",
+          "args": [
+            [
+              0,
+              10
+            ],
+            [
+              2,
+              4
+            ]
+          ],
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "group": "held_out",
+          "args": [
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "expected": false,
+          "actual": false,
+          "passed": true
+        }
+      ],
+      "passed": 5,
+      "total": 9
+    },
+    "patch_a": {
+      "source": "def overlap(a, b):\n    return max(a[0], b[0]) <= min(a[1], b[1])\n",
+      "sha256": "4f5a50e4113743b502a37eb03be2f873e43e80b64add7b1bf22ee59c6c021df3",
+      "seconds": 0.432,
+      "tests": [
+        {
+          "group": "smoke",
+          "args": [
+            [
+              1,
+              5
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "group": "challenge",
+          "args": [
+            [
+              1,
+              3
+            ],
+            [
+              3,
+              5
+            ]
+          ],
+          "expected": false,
+          "actual": true,
+          "passed": false
+        },
+        {
+          "group": "challenge",
+          "args": [
+            [
+              1,
+              5
+            ],
+            [
+              1,
+              5
+            ]
+          ],
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "group": "challenge",
+          "args": [
+            [
+              2,
+              3
+            ],
+            [
+              0,
+              8
+            ]
+          ],
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "group": "held_out",
+          "args": [
+            [
+              -5,
+              0
+            ],
+            [
+              0,
+              5
+            ]
+          ],
+          "expected": false,
+          "actual": true,
+          "passed": false
+        },
+        {
+          "group": "held_out",
+          "args": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "expected": false,
+          "actual": true,
+          "passed": false
+        },
+        {
+          "group": "held_out",
+          "args": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "group": "held_out",
+          "args": [
+            [
+              0,
+              10
+            ],
+            [
+              2,
+              4
+            ]
+          ],
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "group": "held_out",
+          "args": [
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "expected": false,
+          "actual": false,
+          "passed": true
+        }
+      ],
+      "passed": 6,
+      "total": 9
+    },
+    "patch_b": {
+      "source": "def overlap(a, b):\n    return max(a[0], b[0]) < min(a[1], b[1])\n",
+      "sha256": "1ccd59aaae35e1436941a4ab4a3d807c352ceec7e15a361bb1f3424ad896ce55",
+      "seconds": 0.469,
+      "tests": [
+        {
+          "group": "smoke",
+          "args": [
+            [
+              1,
+              5
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "group": "challenge",
+          "args": [
+            [
+              1,
+              3
+            ],
+            [
+              3,
+              5
+            ]
+          ],
+          "expected": false,
+          "actual": false,
+          "passed": true
+        },
+        {
+          "group": "challenge",
+          "args": [
+            [
+              1,
+              5
+            ],
+            [
+              1,
+              5
+            ]
+          ],
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "group": "challenge",
+          "args": [
+            [
+              2,
+              3
+            ],
+            [
+              0,
+              8
+            ]
+          ],
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "group": "held_out",
+          "args": [
+            [
+              -5,
+              0
+            ],
+            [
+              0,
+              5
+            ]
+          ],
+          "expected": false,
+          "actual": false,
+          "passed": true
+        },
+        {
+          "group": "held_out",
+          "args": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "expected": false,
+          "actual": false,
+          "passed": true
+        },
+        {
+          "group": "held_out",
+          "args": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "group": "held_out",
+          "args": [
+            [
+              0,
+              10
+            ],
+            [
+              2,
+              4
+            ]
+          ],
+          "expected": true,
+          "actual": true,
+          "passed": true
+        },
+        {
+          "group": "held_out",
+          "args": [
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "expected": false,
+          "actual": false,
+          "passed": true
+        }
+      ],
+      "passed": 9,
+      "total": 9
+    }
+  },
+  "limitations": [
+    "Bundled fixtures only; no arbitrary repository execution.",
+    "Passing finite cases is not proof of correctness.",
+    "Oracle is handwritten from the fixture specification.",
+    "Held-out cases are excluded from the model prompt but public in this repository."
+  ],
+  "distinguishing_cases": [
+    1,
+    4,
+    5
+  ],
+  "challenge_distinguishing_cases": [
+    1
+  ],
+  "conclusion": "The evidence distinguishes the patches.",
+  "report_sha256": "f8d4d4b6be8a57e34252fd887ec63ff1779364f6838b2bfc40132410fad47ea0"
+}
