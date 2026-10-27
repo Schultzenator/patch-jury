@@ -11,7 +11,7 @@
     "base": {
       "source": "def pages(total, size):\n    return total // size\n",
       "sha256": "eb88c062ae2dec3cd34ed6ba1809d55fe0046bdd1078bd5fd3d631c6e84ac8df",
-      "seconds": 0.448,
+      "seconds": 0.433,
       "tests": [
         {
           "group": "smoke",
@@ -110,7 +110,7 @@
     "patch_a": {
       "source": "def pages(total, size):\n    return total // size + 1\n",
       "sha256": "2ecb6318b45fab3c45be3308afc0212e01048ddeda4f0adb009dce6872da9e2e",
-      "seconds": 0.484,
+      "seconds": 0.439,
       "tests": [
         {
           "group": "smoke",
@@ -209,7 +209,7 @@
     "patch_b": {
       "source": "def pages(total, size):\n    return (total + size - 1) // size\n",
       "sha256": "85d9aeb3cb6d0a6ef659546f4c494d309fd970e7bc60e657024907d56c630661",
-      "seconds": 0.465,
+      "seconds": 0.46,
       "tests": [
         {
           "group": "smoke",
@@ -331,5 +331,5 @@
     "reason": "patch_b passes every evaluated case; the alternative has counterexamples.",
     "scope": "Evidence from this finite suite only; maintainer approval required."
   },
-  "report_sha256": "7df782e943ca622595c5c8b41169999730d0bbc754c77d010fdb3b8536be9abd"
+  "report_sha256": "76cd2240897d94317e5346945149c1b5ecaa4e5445d9365efc6590bfc3baa581"
 }

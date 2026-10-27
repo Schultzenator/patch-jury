@@ -9,6 +9,7 @@ async function init() { const res = await fetch('/api/fixtures'); if (!res.ok)
     o.textContent = value.title;
     fixture.append(o);
 } fixture.onchange = () => { el('spec').textContent = fixtures[fixture.value].spec; el('results').hidden = true; }; fixture.onchange(new Event('change')); }
+mode.onchange = () => { el('results').hidden = true; el('status').textContent = 'Mode changed. Compare patches to generate new evidence.'; };
 run.onclick = async () => { run.disabled = true; el('results').hidden = true; el('status').textContent = mode.value === 'live' ? 'Requesting boundary inputs from Nemotron on Nebius, then executing tests…' : 'Executing hand-authored cases in isolated containers…'; try {
     const res = await fetch('/api/compare', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ fixture: fixture.value, mode: mode.value }) });
     const data = await res.json();
@@ -24,7 +25,7 @@ catch (e) {
 finally {
     run.disabled = false;
 } };
-function render() { el('results').hidden = false; el('verdict').textContent = `Verdict: ${report.verdict.status.toUpperCase()} · ${report.verdict.reason} ${report.verdict.scope}`; el('conclusion').textContent = report.conclusion; el('provenance').textContent = report.provenance.mode === 'live' ? `LIVE · ${report.provenance.model} · Nebius Token Factory · ${JSON.stringify(report.provenance.usage)}` : 'OFFLINE · Hand-authored examples · No API call or model recording'; el('cards').replaceChildren(); for (const [name, v] of Object.entries(report.variants)) {
+function render() { el('results').hidden = false; el('verdict').textContent = `Verdict: ${report.verdict.status.toUpperCase()} · ${report.verdict.reason} ${report.verdict.scope}`; el('conclusion').textContent = `${report.conclusion} Challenge inputs distinguish the patches on ${report.challenge_distinguishing_cases.length} case(s); held-out evidence is reported separately below.`; el('provenance').textContent = report.provenance.mode === 'live' ? `LIVE · ${report.provenance.model} · Nebius Token Factory · Request ${report.provenance.request_id ?? "unavailable"} · Usage ${JSON.stringify(report.provenance.usage)}` : 'OFFLINE · Hand-authored examples · No API call or model recording'; el('cards').replaceChildren(); for (const [name, v] of Object.entries(report.variants)) {
     const c = node('article', '', 'card');
     c.append(node('h3', name.replace('_', ' ').toUpperCase()), node('div', `${v.passed}/${v.total}`, 'score'), node('p', `cases passed · ${v.seconds}s`), node('p', ['smoke', 'challenge', 'held_out'].map(g => `${g}: ${v.tests.filter(t => t.group === g && t.passed).length}/${v.tests.filter(t => t.group === g).length}`).join(' · ')), node('pre', v.source), node('small', `SHA256 ${v.sha256.slice(0, 16)}…`));
     el('cards').append(c);

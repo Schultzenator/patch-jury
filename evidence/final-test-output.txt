@@ -7,25 +7,26 @@ test_timeout_cleanup (test_core.SandboxTests.test_timeout_cleanup) ... ok
 test_all_examples_valid (test_core.ValidationTests.test_all_examples_valid) ... ok
 test_oracles (test_core.ValidationTests.test_oracles) ... ok
 test_reject_code_booleans_invalid_domains_and_duplicates (test_core.ValidationTests.test_reject_code_booleans_invalid_domains_and_duplicates) ... ok
-test_cross_origin_rebinding_and_get_cannot_spend (test_server.ServerTests.test_cross_origin_rebinding_and_get_cannot_spend) ... 127.0.0.1 - - [27/Oct/2026 19:00:40] "GET /api/compare HTTP/1.1" 404 -
-127.0.0.1 - - [27/Oct/2026 19:00:40] "POST /api/compare HTTP/1.1" 403 -
-127.0.0.1 - - [27/Oct/2026 19:00:40] "POST /api/compare HTTP/1.1" 403 -
-127.0.0.1 - - [27/Oct/2026 19:00:40] "POST /api/compare HTTP/1.1" 403 -
+test_cross_origin_rebinding_and_get_cannot_spend (test_server.ServerTests.test_cross_origin_rebinding_and_get_cannot_spend) ... 127.0.0.1 - - [27/Oct/2026 19:07:35] "GET /api/compare HTTP/1.1" 404 -
+127.0.0.1 - - [27/Oct/2026 19:07:35] "POST /api/compare HTTP/1.1" 403 -
+127.0.0.1 - - [27/Oct/2026 19:07:35] "POST /api/compare HTTP/1.1" 403 -
+127.0.0.1 - - [27/Oct/2026 19:07:35] "POST /api/compare HTTP/1.1" 403 -
 ok
-test_invalid_data (test_server.ServerTests.test_invalid_data) ... 127.0.0.1 - - [27/Oct/2026 19:00:40] "POST /api/compare HTTP/1.1" 400 -
+test_invalid_data (test_server.ServerTests.test_invalid_data) ... 127.0.0.1 - - [27/Oct/2026 19:07:35] "POST /api/compare HTTP/1.1" 400 -
 ok
-test_static_types_and_no_traversal (test_server.ServerTests.test_static_types_and_no_traversal) ... 127.0.0.1 - - [27/Oct/2026 19:00:40] "GET / HTTP/1.1" 200 -
-127.0.0.1 - - [27/Oct/2026 19:00:40] "GET /app.js HTTP/1.1" 200 -
-127.0.0.1 - - [27/Oct/2026 19:00:40] "GET /style.css HTTP/1.1" 200 -
-127.0.0.1 - - [27/Oct/2026 19:00:40] "GET /api/fixtures HTTP/1.1" 200 -
-127.0.0.1 - - [27/Oct/2026 19:00:40] "GET /../TASK.md HTTP/1.1" 404 -
+test_static_types_and_no_traversal (test_server.ServerTests.test_static_types_and_no_traversal) ... 127.0.0.1 - - [27/Oct/2026 19:07:35] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2026 19:07:35] "GET /app.js HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2026 19:07:35] "GET /style.css HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2026 19:07:35] "GET /api/fixtures HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2026 19:07:35] "GET /../TASK.md HTTP/1.1" 404 -
 ok
 test_config_rejects_invalid_endpoint_or_non_nvidia (test_submission.SubmissionTests.test_config_rejects_invalid_endpoint_or_non_nvidia) ... ok
 test_env_routing_and_model_reach_request_and_provenance (test_submission.SubmissionTests.test_env_routing_and_model_reach_request_and_provenance) ... ok
+test_failed_live_attempts_stay_reserved_and_never_fall_back (test_submission.SubmissionTests.test_failed_live_attempts_stay_reserved_and_never_fall_back) ... ok
 test_price_change_blocks_before_reservation_and_inference (test_submission.SubmissionTests.test_price_change_blocks_before_reservation_and_inference) ... ok
 test_unique_survivor_only_and_no_automatic_merge (test_submission.SubmissionTests.test_unique_survivor_only_and_no_automatic_merge) ... ok
 
 ----------------------------------------------------------------------
-Ran 16 tests in 6.288s
+Ran 17 tests in 6.681s
 
 OK

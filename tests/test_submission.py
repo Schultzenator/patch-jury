@@ -5,6 +5,7 @@ import pathlib
 import tempfile
 import unittest
 from unittest.mock import MagicMock, patch
+import urllib.error
 from patchjury.provider import Budget, configuration, generate, MODEL
 from patchjury.runner import verdict
 
@@ -38,6 +39,23 @@ class SubmissionTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'pricing changed'): generate('pages',budget)
             self.assertEqual(budget.status()['attempts'],0)
             self.assertEqual(call.call_count,1)
+
+    def test_failed_live_attempts_stay_reserved_and_never_fall_back(self):
+        catalog=[{'flavors':[{'model_id':MODEL,'input_price_per_million_tokens':.06,'output_price_per_million_tokens':.24}]}]
+        def response(data):
+            r=MagicMock(); r.__enter__.return_value.read.return_value=json.dumps(data).encode(); return r
+        for failure in [urllib.error.URLError('timeout'),
+                        {'model':MODEL,'choices':[{'message':{'content':'not JSON'}}]},
+                        {'model':'other/model','choices':[]}]:
+            with self.subTest(failure=failure), tempfile.TemporaryDirectory() as d, patch.dict(os.environ,{'NEBIUS_API_KEY':'placeholder','NEBIUS_CREDITS_CONFIRMED':'yes'},clear=True):
+                budget=Budget(pathlib.Path(d)/'ledger')
+                effect=failure if isinstance(failure,Exception) else response(failure)
+                with patch('urllib.request.urlopen',side_effect=[response(catalog),effect]) as call:
+                    with self.assertRaises((ValueError,urllib.error.URLError)):
+                        generate('pages',budget)
+                    self.assertEqual(call.call_count,2)  # no automatic retry
+                self.assertEqual(budget.status()['attempts'],1)
+                self.assertEqual(budget.status()['reserved_usd'],.01)
 
     def test_unique_survivor_only_and_no_automatic_merge(self):
         for a,b,winner in [(3,9,'patch_b'),(9,3,'patch_a'),(9,9,None),(3,4,None)]:
