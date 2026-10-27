@@ -34,6 +34,17 @@ def execute(source, function, cases, timeout=12):
         if len(values)!=len(cases): raise RuntimeError('Runner output length mismatch')
         return values, round(time.monotonic()-started,3)
 
+def verdict(variants):
+    """A deterministic evidence decision; the model never awards its own score."""
+    survivors=[name for name in ['patch_a','patch_b']
+               if variants[name]['passed']==variants[name]['total']]
+    winner=survivors[0] if len(survivors)==1 else None
+    return {'status':'supported' if winner else 'inconclusive',
+            'recommended_patch':winner,
+            'reason':(winner+' passes every evaluated case; the alternative has counterexamples.'
+                      if winner else 'No unique patch passes every evaluated case. Gather more evidence.'),
+            'scope':'Evidence from this finite suite only; maintainer approval required.'}
+
 def compare(fixture, cases, provenance):
     f=FIXTURES[fixture]; validate_cases(fixture,cases)
     groups=[('smoke',f['smoke']),('challenge',cases),('held_out',f['hidden'])]
@@ -50,5 +61,6 @@ def compare(fixture, cases, provenance):
     report['distinguishing_cases']=discriminatory
     report['challenge_distinguishing_cases']=[i for i in discriminatory if all_cases[i][0]=='challenge']
     report['conclusion']='The evidence distinguishes the patches.' if discriminatory else 'Inconclusive: these cases do not distinguish the patches.'
+    report['verdict']=verdict(report['variants'])
     report['report_sha256']=hashlib.sha256(json.dumps(report,sort_keys=True).encode()).hexdigest()
     return report

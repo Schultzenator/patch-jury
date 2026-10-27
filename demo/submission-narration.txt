@@ -1,0 +1,7 @@
+Two patches can pass the same smoke test, yet only one fixes the root cause. Patch Jury gives maintainers concrete evidence before merge.
+This is the offline demonstration. Every challenge input here is hand authored. No model inference is shown.
+We select a page count regression and compare the buggy base with two competing fixes. The juror workflow validates boundary inputs, computes expected answers from a trusted specification, and runs all three versions in separate Docker containers.
+The verdict supports patch B within this finite suite. Patch A passes the obvious smoke test, but fails additional cases. Here are the source code, pass counts, and counterexamples. Empty input exposes a mistake that a green smoke test can miss.
+The same workflow catches decimal rounding regressions. Expected values come from the oracle, never from a model's opinion.
+In live mode, NVIDIA Nemotron proposes boundary inputs through Nebius Token Factory's OpenAI compatible endpoint. The owner supplies these environment variables and restarts the server. This card contains a key placeholder only. Live authentication is still pending.
+Export the JSON evidence to inspect provenance, source hashes, token usage when live, and exact results. Finite tests support a decision; a maintainer approves the merge.

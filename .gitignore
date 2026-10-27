@@ -10,3 +10,4 @@ __pycache__/
 node_modules/
 demo/*.wav
 demo/frames/
+demo/submission/*.wav

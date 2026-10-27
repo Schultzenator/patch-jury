@@ -24,6 +24,7 @@ def main():
         for t in v['tests']:
             print(f"  {'PASS' if t['passed'] else 'FAIL'} {t['group']:9} {t['args']} -> {t.get('actual',t.get('error'))!r} (expected {t['expected']!r})")
     print(report['conclusion'])
+    print('Verdict: '+report['verdict']['status']+' | '+report['verdict']['reason'])
     pathlib.Path(args.output).write_text(json.dumps(report,indent=2)+'\n')
     print('Evidence exported: '+args.output)
 if __name__=='__main__': main()

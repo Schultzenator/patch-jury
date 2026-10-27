@@ -1,15 +1,36 @@
-# Demo production
+# 80-second submission demo
 
-`preview.mp4` is a <3 minute **offline terminal recording replay with English TTS**, not a final live Nebius demonstration. No face, personal mail, credentials or fabricated API activity. `terminal-recording.json` contains the actual CLI outputs; `scripts/make_demo.py` captures them and renders the terminal replay. Frame timing is edited for readability. The CLI reports are real executions; no pass/fail text is invented.
+New artifact: [submission/submission-offline.mp4](submission/submission-offline.mp4), 1280×720 H.264/AAC, English TTS, no face. It is an edited sequence of **actual local application screen captures**, not continuous interaction footage. All application results are real Docker runs with hand-authored inputs. The full-width label discloses offline mode on every frame. The ENV card is a placeholder, not evidence of inference. The old `preview.mp4` is a separate 116-second terminal replay.
 
-Run `python3 scripts/make_demo.py` with Pillow, `espeak`, and FFmpeg installed. Set `FFMPEG` if it is not on PATH. The resulting video and first frame are local artifacts. Narration is in `narration.txt`.
+## Shot list and voice-over (80 seconds)
 
-Final video plan (<180 seconds):
-1. 0:00–0:15: maintainer problem and two green smoke tests.
-2. 0:15–0:45: choose a fixture; request real Nemotron inputs with visible live provenance.
-3. 0:45–1:20: inspect distinguishing cases, show all three variant results and held-out group.
-4. 1:20–1:50: export the real report; show returned NVIDIA model, usage and source hashes.
-5. 1:50–2:20: repeat a boundary case on another fixture; explain finite-test limits and isolation.
-6. 2:20–2:40: show repository and test-build setup, tools feedback based on actual use.
+| Time | Capture / action | Message |
+| --- | --- | --- |
+| 00–08 | Landing page | Two fixes can pass the smoke test but differ on root cause. |
+| 08–16 | Fixture and offline selector | Explicit offline disclosure; compare bundled patches. |
+| 16–28 | Result and verdict | Validate inputs, use trusted expectations, execute all variants. |
+| 28–40 | Source cards and group counts | B passes the suite; A has counterexamples despite green smoke. |
+| 40–54 | Distinguishing cases | Inspect exact input, expected value and actual outputs. |
+| 54–64 | Money regression | Repeat the same workflow on decimal rounding. |
+| 64–74 | ENV placeholder card | Where NVIDIA Nemotron and Nebius enter; key remains owner supplied. |
+| 74–80 | Application / close | Export evidence; human retains merge decision. |
 
-Capture only the application window and sanitized report. Do not show account settings, a secret-bearing terminal, owner face, or private inbox. Publish final video as public YouTube and verify playback signed out. Publication is pending account/browser access.
+Full English narration: [submission-narration.txt](submission-narration.txt). Eight captured PNGs and FFmpeg concat timeline: [submission/](submission/).
+
+## Reproduce the offline render
+
+Requires running Docker with the pinned image already pulled, Python, Pillow, Playwright, Chrome, espeak and FFmpeg. These are optional video build tools, not application runtime dependencies. Port 8000 must be free.
+
+```bash
+python3 -m pip install pillow playwright
+# Set CHROME to a Chrome/Chromium executable if not on PATH.
+TMPDIR=/tmp FFMPEG=/path/to/ffmpeg python3 scripts/render_submission_demo.py
+```
+
+The script starts and stops its own localhost server, captures real offline results and a sanitized placeholder card, writes `evidence/submission-pages.json`, and renders an 80-second MP4. No account session is opened. Generated narration WAV is ignored by Git. Local Factory FFmpeg used for this render: `/tmp/flight-video-tools/node_modules/ffmpeg-static/ffmpeg`.
+
+## Owner's live capture (60–90 seconds)
+
+After the owner verifies credits and injects ENV, restart the server. Record only the application window at 1280×720 or higher. Use the same 80-second structure, replacing the placeholder/offline section with a real selection of **Nemotron · live Nebius API**, the request, real results and exported live provenance. Keep the waiting interval honest or mark the edit. Show the returned NVIDIA model, request ID and token usage; do not expose the key or console. Export evidence during the capture. If generated inputs do not distinguish patches, report that and separate the authored holdout contribution.
+
+Replace the offline narration with observed facts, remove the offline banner only from authenticated footage, retain finite-suite limitations, and review playback before publishing. Public YouTube upload and submission are PW steps. The offline MP4 is a production rehearsal and cannot establish the mandatory Nebius runtime call.
